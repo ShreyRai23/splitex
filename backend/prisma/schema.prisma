@@ -1,0 +1,211 @@
+// =============================================================================
+// prisma/schema.prisma
+// SpilTeX Shared Expenses App — Database Schema
+//
+// Design philosophy:
+//  - Users have lifecycles inside groups (joinedAt / leftAt) so we can enforce
+//    Sam's constraint: "I moved in mid-April, why would March affect me?"
+//  - Every expense stores BOTH originalAmount+currency AND amountInr so Priya's
+//    dollar amounts are auditable (we never lose the source data).
+//  - ExpenseSplit stores the exact INR each person owes per expense — this is
+//    what powers Rohan's "no magic numbers" itemized audit.
+//  - ImportBatch tracks the dry-run report and commit state, satisfying Meera's
+//    "I want to approve anything before it's deleted/changed" requirement.
+// =============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// User
+// ---------------------------------------------------------------------------
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String   @unique
+  email        String?  @unique
+  passwordHash String?
+  isGuest      Boolean  @default(false) // true for users like "Kabir" auto-created from CSV
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  memberships      GroupMembership[]
+  expensesPaid     Expense[]          @relation("PaidBy")
+  splits           ExpenseSplit[]
+  sentPayments     Settlement[]       @relation("Payer")
+  receivedPayments Settlement[]       @relation("Payee")
+  auditLogs        AuditLog[]
+
+  @@map("users")
+}
+
+// ---------------------------------------------------------------------------
+// Group
+// ---------------------------------------------------------------------------
+model Group {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  memberships GroupMembership[]
+  expenses    Expense[]
+
+  @@map("groups")
+}
+
+// ---------------------------------------------------------------------------
+// GroupMembership — tracks who was in the group and when.
+// This is the core table that enforces timeline constraints.
+// A user can rejoin a group (e.g., left and came back), so there is no
+// unique constraint on (userId, groupId) — multiple rows are valid.
+// ---------------------------------------------------------------------------
+model GroupMembership {
+  id       Int       @id @default(autoincrement())
+  userId   Int
+  groupId  Int
+  joinedAt DateTime
+  leftAt   DateTime? // null means still active
+
+  user  User  @relation(fields: [userId], references: [id])
+  group Group @relation(fields: [groupId], references: [id])
+
+  @@index([userId, groupId])
+  @@map("group_memberships")
+}
+
+// ---------------------------------------------------------------------------
+// Expense — the central financial record.
+//
+// Key decisions:
+//   originalAmount / originalCurrency — always the raw CSV/input values
+//   amountInr — normalized value at ingestion, used for all math
+//   exchangeRate — the rate used so you can audit the conversion
+//   idempotencyKey — prevents duplicate creation on network retries
+//   importBatchId — links rows created by bulk import back to their batch
+// ---------------------------------------------------------------------------
+model Expense {
+  id               Int       @id @default(autoincrement())
+  groupId          Int
+  paidById         Int
+  description      String
+  originalAmount   Decimal   @db.Decimal(12, 4) // raw — never modified
+  originalCurrency String    @default("INR")
+  amountInr        Decimal   @db.Decimal(12, 2) // normalized — used for calculations
+  exchangeRate     Decimal?  @db.Decimal(10, 6) // null when currency is INR
+  date             DateTime  @db.Date
+  splitType        SplitType
+  notes            String?   @db.Text
+  idempotencyKey   String?   @unique              // for duplicate-safe manual creation
+  importBatchId    String?                         // links to ImportBatch.id
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  group   Group          @relation(fields: [groupId], references: [id])
+  paidBy  User           @relation("PaidBy", fields: [paidById], references: [id])
+  splits  ExpenseSplit[]
+
+  @@index([groupId])
+  @@index([importBatchId])
+  @@map("expenses")
+}
+
+enum SplitType {
+  equal
+  percentage
+  exact      // called "unequal" in CSV — exact rupee amounts per person
+  share      // weighted share ratios (e.g., 2:1:1)
+}
+
+// ---------------------------------------------------------------------------
+// ExpenseSplit — one row per (expense, user) pair.
+//
+// shareAmount is the definitive INR amount this user owes for this expense.
+// shareRatio stores the raw input (%, share count, or 1 for equal) so the
+// calculation can always be reconstructed and audited (Rohan's constraint).
+// ---------------------------------------------------------------------------
+model ExpenseSplit {
+  id          Int     @id @default(autoincrement())
+  expenseId   Int
+  userId      Int
+  shareAmount Decimal @db.Decimal(12, 2) // exact INR owed by this user
+  shareRatio  Decimal @db.Decimal(10, 4) @default(0) // raw ratio/% for audit
+
+  expense Expense @relation(fields: [expenseId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@unique([expenseId, userId])
+  @@map("expense_splits")
+}
+
+// ---------------------------------------------------------------------------
+// Settlement — a direct payment between two users (peer-to-peer).
+// These are NOT expenses. They reduce the net debt between two people.
+// Row 14 (Rohan paid Aisha back) and Row 38 (Sam's deposit) are settlements.
+// ---------------------------------------------------------------------------
+model Settlement {
+  id            Int      @id @default(autoincrement())
+  payerId       Int      // who SENT money
+  payeeId       Int      // who RECEIVED money
+  amount        Decimal  @db.Decimal(12, 2)
+  currency      String   @default("INR")
+  amountInr     Decimal  @db.Decimal(12, 2)
+  method        String   @default("UPI")
+  date          DateTime @db.Date
+  note          String?  @db.Text
+  importBatchId String?
+  createdAt     DateTime @default(now())
+
+  payer User @relation("Payer", fields: [payerId], references: [id])
+  payee User @relation("Payee", fields: [payeeId], references: [id])
+
+  @@map("settlements")
+}
+
+// ---------------------------------------------------------------------------
+// ImportBatch — tracks every CSV import attempt.
+//
+// Phase 1 (dry-run) creates a batch with status DRY_RUN_COMPLETE and stores
+// the full anomaly report JSON. Phase 2 (commit) transitions it to COMMITTED.
+// This gives Meera the approval gating she asked for.
+// ---------------------------------------------------------------------------
+model ImportBatch {
+  id            String       @id @default(uuid())
+  status        ImportStatus @default(DRY_RUN_PENDING)
+  reportJson    Json         // the full dry-run anomaly report
+  committedById Int?         // user who approved and committed
+  createdAt     DateTime     @default(now())
+  committedAt   DateTime?
+
+  @@map("import_batches")
+}
+
+enum ImportStatus {
+  DRY_RUN_PENDING
+  DRY_RUN_COMPLETE
+  COMMITTED
+  ROLLED_BACK
+}
+
+// ---------------------------------------------------------------------------
+// AuditLog — immutable append-only log of all data-mutating actions.
+// Satisfies the requirement that modifications are deliberately tracked.
+// ---------------------------------------------------------------------------
+model AuditLog {
+  id         Int      @id @default(autoincrement())
+  userId     Int?     // null for system actions
+  action     String   // e.g., IMPORT_COMMIT, EXPENSE_CREATED, ANOMALY_APPROVED
+  targetType String   // "Expense", "Settlement", "ImportBatch", "User"
+  targetId   String   // string so it works for both Int IDs and UUIDs
+  detail     Json?    // free-form JSON with before/after or context
+  createdAt  DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@map("audit_logs")
+}
