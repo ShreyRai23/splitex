@@ -8,7 +8,7 @@ SpilTeX is a full-stack shared expense tracker built to solve real-world flatmat
 
 ### Prerequisites
 - **Node.js**: v18+
-- **Database**: PostgreSQL (or MySQL)
+- **Database**: MySQL (v8.0+)
 - **AI Key**: Gemini API key from [Google AI Studio](https://aistudio.google.com)
 
 ### 1. Backend Setup ⚙️
