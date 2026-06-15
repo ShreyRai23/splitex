@@ -2,7 +2,10 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { Search, Bell, LogOut, Upload, LayoutDashboard, Receipt, Wallet, Users, ArrowLeftRight, ScrollText } from 'lucide-react';
 import useAuthStore from '../../store/auth.store';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { groupsApi } from '../../api/index.js';
+import useAppStore from '../../store/app.store.js';
 
 const NAV_ITEMS = [
   { to: '/dashboard',    label: 'Overview',     icon: LayoutDashboard },
@@ -23,8 +26,29 @@ function avatarColor(name = '') {
 
 export default function AppShell() {
   const { user, logout } = useAuthStore();
+  const { selectedGroupId, setSelectedGroupId } = useAppStore();
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
+
+  // Fetch groups globally so we can set a valid default group
+  const { data: groupsData } = useQuery({
+    queryKey: ['my-groups'],
+    queryFn: () => groupsApi.list().then(r => r.data.data),
+  });
+
+  useEffect(() => {
+    if (groupsData) {
+      // If user has no groups, set to null
+      if (groupsData.length === 0) {
+        setSelectedGroupId(null);
+      } 
+      // If selected group is 1 (the hardcoded default) but user is not in group 1,
+      // or if selectedGroupId is null but they now have groups, pick the first one
+      else if (!selectedGroupId || !groupsData.find(g => g.id === selectedGroupId)) {
+        setSelectedGroupId(groupsData[0].id);
+      }
+    }
+  }, [groupsData, selectedGroupId, setSelectedGroupId]);
 
   const handleLogout = () => { logout(); navigate('/login'); };
 

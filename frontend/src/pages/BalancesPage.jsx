@@ -16,6 +16,7 @@ export default function BalancesPage() {
     queryKey: ['group-balances', selectedGroupId],
     queryFn: () => balancesApi.group(selectedGroupId).then(r => r.data.data),
     refetchInterval: 20000,
+    enabled: !!selectedGroupId,
   });
 
   const summary = data?.summary || [];
@@ -30,6 +31,22 @@ export default function BalancesPage() {
 
   const totalOwed = summary.reduce((s, u) => s + (u.balance > 0 ? u.balance : 0), 0);
   const totalOwe  = summary.reduce((s, u) => s + (u.balance < 0 ? Math.abs(u.balance) : 0), 0);
+
+  if (!selectedGroupId) {
+    return (
+      <div className="page animate-fade-in" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh', textAlign: 'center' }}>
+        <div style={{ background: 'var(--card-bg)', padding: '40px', borderRadius: 'var(--r-card)', border: '1px solid var(--border)' }}>
+          <h2 className="text-h2">No Group Selected</h2>
+          <p style={{ color: 'var(--text-muted)', marginTop: 8, marginBottom: 24, maxWidth: 400 }}>
+            You need to be in a group to view balances.
+          </p>
+          <Link to="/groups" className="btn btn-purple btn-lg">
+            Manage Groups →
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page animate-fade-in">
@@ -160,3 +177,4 @@ export default function BalancesPage() {
     </div>
   );
 }
+

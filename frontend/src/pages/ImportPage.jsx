@@ -1,7 +1,7 @@
 // src/pages/ImportPage.jsx
 import { useState, useRef } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { importApi } from '../api/index.js';
 import useAppStore from '../store/app.store.js';
 import Badge from '../components/ui/Badge.jsx';
@@ -96,6 +96,22 @@ export default function ImportPage() {
           <button className="btn btn-black btn-lg" onClick={() => navigate('/dashboard')}>
             Go to Dashboard
           </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!selectedGroupId) {
+    return (
+      <div className="page animate-fade-in" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh', textAlign: 'center' }}>
+        <div style={{ background: 'var(--card-bg)', padding: '40px', borderRadius: 'var(--r-card)', border: '1px solid var(--border)' }}>
+          <h2 className="text-h2">No Group Selected</h2>
+          <p style={{ color: 'var(--text-muted)', marginTop: 8, marginBottom: 24, maxWidth: 400 }}>
+            You need to be in a group to import expenses.
+          </p>
+          <Link to="/groups" className="btn btn-purple btn-lg">
+            Manage Groups →
+          </Link>
         </div>
       </div>
     );

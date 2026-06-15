@@ -13,7 +13,7 @@
 //    is wasteful and adds latency to the dry-run.
 //  - Errors from Gemini are caught gracefully. If the API is unavailable, we
 //    return a fallback explanation so the import report still works.
-//  - We use gemini-2.0-flash (fast, cheap) since this is a structured Q&A task,
+//  - We use gemini-2.5-flash (fast, cheap) since this is a structured Q&A task,
 //    not a creative generation task.
 // =============================================================================
 
@@ -74,7 +74,7 @@ async function getAnomalyContext({ anomalyType, row, rowNumber, detectedIssue })
     const model = client.models;
 
     const response = await model.generateContent({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-2.5-flash',
       contents: prompt,
       config: {
         maxOutputTokens: 300,
@@ -83,7 +83,8 @@ async function getAnomalyContext({ anomalyType, row, rowNumber, detectedIssue })
       },
     });
 
-    const text = response.text();
+    const text = response.candidates?.[0]?.content?.parts?.[0]?.text ||
+      (typeof response.text === 'function' ? response.text() : '');
     const parsed = JSON.parse(text);
 
     return {

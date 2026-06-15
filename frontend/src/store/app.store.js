@@ -2,7 +2,7 @@
 import { create } from 'zustand';
 
 const useAppStore = create((set) => ({
-  selectedGroupId: 1,   // default to first group
+  selectedGroupId: null,  // null until groups are fetched
   setSelectedGroupId: (id) => set({ selectedGroupId: id }),
 
   groups: [],

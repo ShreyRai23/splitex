@@ -5,6 +5,7 @@ import { settlementsApi, usersApi } from '../api/index.js';
 import useAppStore from '../store/app.store.js';
 import Modal from '../components/ui/Modal.jsx';
 import Avatar from '../components/ui/Avatar.jsx';
+import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import toast from 'react-hot-toast';
@@ -108,12 +109,29 @@ export default function SettlementsPage() {
   const { data: settlements = [], isLoading } = useQuery({
     queryKey: ['settlements', selectedGroupId],
     queryFn: () => settlementsApi.list({ groupId: selectedGroupId }).then(r => r.data.data),
+    enabled: !!selectedGroupId,
   });
 
   const { data: usersData } = useQuery({
     queryKey: ['users'],
     queryFn: () => usersApi.list().then(r => r.data.data),
   });
+
+  if (!selectedGroupId) {
+    return (
+      <div className="page animate-fade-in" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh', textAlign: 'center' }}>
+        <div style={{ background: 'var(--card-bg)', padding: '40px', borderRadius: 'var(--r-card)', border: '1px solid var(--border)' }}>
+          <h2 className="text-h2">No Group Selected</h2>
+          <p style={{ color: 'var(--text-muted)', marginTop: 8, marginBottom: 24, maxWidth: 400 }}>
+            You need to be in a group to record settlements.
+          </p>
+          <Link to="/groups" className="btn btn-purple btn-lg">
+            Manage Groups →
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page animate-fade-in">

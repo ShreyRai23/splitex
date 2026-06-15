@@ -132,6 +132,7 @@ export default function ExpensesPage() {
   const { data: expenses = [], isLoading } = useQuery({
     queryKey: ['expenses', selectedGroupId],
     queryFn: () => expensesApi.list({ groupId: selectedGroupId, limit: 100 }).then(r => r.data.data),
+    enabled: !!selectedGroupId,
   });
   const { data: usersData } = useQuery({
     queryKey: ['users'],
@@ -159,6 +160,22 @@ export default function ExpensesPage() {
 
   // Stats
   const total = filtered.reduce((s, e) => s + parseFloat(e.amountInr || 0), 0);
+
+  if (!selectedGroupId) {
+    return (
+      <div className="page animate-fade-in" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh', textAlign: 'center' }}>
+        <div style={{ background: 'var(--card-bg)', padding: '40px', borderRadius: 'var(--r-card)', border: '1px solid var(--border)' }}>
+          <h2 className="text-h2">No Group Selected</h2>
+          <p style={{ color: 'var(--text-muted)', marginTop: 8, marginBottom: 24, maxWidth: 400 }}>
+            You need to be in a group to view or add expenses.
+          </p>
+          <Link to="/groups" className="btn btn-purple btn-lg">
+            Manage Groups →
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page animate-fade-in">

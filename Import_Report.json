@@ -1,0 +1,1485 @@
+{
+  "rows": [
+    {
+      "status": "BLOCKED",
+      "anomalies": [
+        {
+          "id": "A14",
+          "type": "TIMELINE_VIOLATION",
+          "message": "Timeline violation: Aisha joined on Sun Feb 01 2026; Rohan joined on Sun Feb 01 2026; Priya joined on Sun Feb 01 2026; Meera joined on Sun Feb 01 2026. These members cannot be charged for an expense on 01-02-2026.",
+          "severity": "ERROR",
+          "aiContext": {
+            "aiGenerated": false,
+            "explanation": "Timeline violation: Aisha joined on Sun Feb 01 2026; Rohan joined on Sun Feb 01 2026; Priya joined on Sun Feb 01 2026; Meera joined on Sun Feb 01 2026. These members cannot be charged for an expense on 01-02-2026.",
+            "recommendation": "This issue was auto-corrected. No manual action required."
+          },
+          "autoFixDetail": null,
+          "autoFixApplied": false,
+          "suggestedAction": "SKIP this row. No valid members left in the split.",
+          "requiresUserDecision": true
+        }
+      ],
+      "rowNumber": 2,
+      "originalRow": {
+        "date": "01-02-2026",
+        "notes": "",
+        "amount": 48000,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "February rent",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "01-02-2026",
+        "notes": "",
+        "amount": 48000,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-01-31T18:30:00.000Z",
+        "description": "February rent",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 3,
+      "originalRow": {
+        "date": "03-02-2026",
+        "notes": "",
+        "amount": 2340,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Groceries BigBasket",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "03-02-2026",
+        "notes": "",
+        "amount": 2340,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-02-02T18:30:00.000Z",
+        "description": "Groceries BigBasket",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 4,
+      "originalRow": {
+        "date": "05-02-2026",
+        "notes": "",
+        "amount": 1199,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Wifi bill Feb",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "05-02-2026",
+        "notes": "",
+        "amount": 1199,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-02-04T18:30:00.000Z",
+        "description": "Wifi bill Feb",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 5,
+      "originalRow": {
+        "date": "08-02-2026",
+        "notes": "Dev visiting for the weekend",
+        "amount": 3200,
+        "paid_by": "Dev",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "description": "Dinner at Marina Bites",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "08-02-2026",
+        "notes": "Dev visiting for the weekend",
+        "amount": 3200,
+        "paid_by": "Dev",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "_parsedDate": "2026-02-07T18:30:00.000Z",
+        "description": "Dinner at Marina Bites",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 6,
+      "originalRow": {
+        "date": "08-02-2026",
+        "notes": "",
+        "amount": 3200,
+        "paid_by": "Dev",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "description": "dinner - marina bites",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "08-02-2026",
+        "notes": "",
+        "amount": 3200,
+        "paid_by": "Dev",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "_parsedDate": "2026-02-07T18:30:00.000Z",
+        "description": "dinner - marina bites",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 7,
+      "originalRow": {
+        "date": "10-02-2026",
+        "notes": "",
+        "amount": 1200,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Electricity Feb",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "10-02-2026",
+        "notes": "",
+        "amount": 1200,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-02-09T18:30:00.000Z",
+        "description": "Electricity Feb",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 8,
+      "originalRow": {
+        "date": "12-02-2026",
+        "notes": "",
+        "amount": 3000,
+        "paid_by": "Meera",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Maid salary Feb",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "12-02-2026",
+        "notes": "",
+        "amount": 3000,
+        "paid_by": "Meera",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-02-11T18:30:00.000Z",
+        "description": "Maid salary Feb",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 9,
+      "originalRow": {
+        "date": "14-02-2026",
+        "notes": "Meera skipped",
+        "amount": 640,
+        "paid_by": "priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya",
+        "description": "Movie night snacks",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "14-02-2026",
+        "notes": "Meera skipped",
+        "amount": 640,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya",
+        "_parsedDate": "2026-02-13T18:30:00.000Z",
+        "description": "Movie night snacks",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [
+        {
+          "id": "A3",
+          "type": "ROUNDING_SUBPAISA",
+          "message": "Amount 899.995 has more than 2 decimal places — rounded to 900",
+          "severity": "INFO",
+          "aiContext": {
+            "aiGenerated": false,
+            "explanation": "Amount 899.995 has more than 2 decimal places — rounded to 900",
+            "recommendation": "This issue was auto-corrected. No manual action required."
+          },
+          "autoFixDetail": "899.995 → 900",
+          "autoFixApplied": true,
+          "suggestedAction": "Auto-rounded. Confirm the rounded value is acceptable.",
+          "requiresUserDecision": false
+        }
+      ],
+      "rowNumber": 10,
+      "originalRow": {
+        "date": "15-02-2026",
+        "notes": "",
+        "amount": 899.995,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Cylinder refill",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "15-02-2026",
+        "notes": "",
+        "amount": 900,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-02-14T18:30:00.000Z",
+        "description": "Cylinder refill",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [
+        {
+          "id": "A4",
+          "type": "UNKNOWN_PAYER",
+          "message": "Payer \"Priya S\" is not a recognized user. Closest match: \"Priya\".",
+          "severity": "ERROR",
+          "aiContext": {
+            "aiGenerated": true,
+            "explanation": "The 'paid_by' field contains 'Priya S', which is not a recognized user. The system suggests 'Priya' as the closest match, indicating a potential typo.",
+            "recommendation": "Correct the 'paid_by' field from 'Priya S' to 'Priya' to match a recognized user."
+          },
+          "autoFixDetail": "Mapping \"Priya S\" → \"Priya\"",
+          "autoFixApplied": true,
+          "suggestedAction": "Confirm: treat \"Priya S\" as \"Priya\"?",
+          "requiresUserDecision": true
+        }
+      ],
+      "rowNumber": 11,
+      "originalRow": {
+        "date": "18-02-2026",
+        "notes": "",
+        "amount": 1875,
+        "paid_by": "Priya S",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Groceries DMart",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "18-02-2026",
+        "notes": "",
+        "amount": 1875,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-02-17T18:30:00.000Z",
+        "description": "Groceries DMart",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 12,
+      "originalRow": {
+        "date": "20-02-2026",
+        "notes": "Aisha not charged obviously",
+        "amount": 1500,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "unequal",
+        "split_with": "Rohan;Priya;Meera",
+        "description": "Aisha birthday cake",
+        "split_details": "Rohan 700; Priya 400; Meera 400"
+      },
+      "processedRow": {
+        "date": "20-02-2026",
+        "notes": "Aisha not charged obviously",
+        "amount": 1500,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "unequal",
+        "split_with": "Rohan;Priya;Meera",
+        "_parsedDate": "2026-02-19T18:30:00.000Z",
+        "description": "Aisha birthday cake",
+        "split_details": "Rohan 700; Priya 400; Meera 400"
+      }
+    },
+    {
+      "status": "BLOCKED",
+      "anomalies": [
+        {
+          "id": "A5",
+          "type": "MISSING_PAYER",
+          "message": "\"paid_by\" is empty for \"House cleaning supplies\". Cannot import without knowing who paid.",
+          "severity": "ERROR",
+          "aiContext": {
+            "aiGenerated": false,
+            "explanation": "\"paid_by\" is empty for \"House cleaning supplies\". Cannot import without knowing who paid.",
+            "recommendation": "This issue was auto-corrected. No manual action required."
+          },
+          "autoFixDetail": null,
+          "autoFixApplied": false,
+          "suggestedAction": "SKIP this row, or specify who paid.",
+          "requiresUserDecision": true
+        }
+      ],
+      "rowNumber": 13,
+      "originalRow": {
+        "date": "22-02-2026",
+        "notes": "can't remember who paid",
+        "amount": 780,
+        "paid_by": "",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "House cleaning supplies",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "22-02-2026",
+        "notes": "can't remember who paid",
+        "amount": 780,
+        "paid_by": "",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-02-21T18:30:00.000Z",
+        "description": "House cleaning supplies",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "CONVERT_TO_SETTLEMENT",
+      "anomalies": [
+        {
+          "id": "A6",
+          "type": "SETTLEMENT_DISGUISED",
+          "message": "\"Rohan paid Aisha back\" appears to be a settlement/transfer, not a shared expense. Notes: \"this is a settlement not an expense??\"",
+          "severity": "ERROR",
+          "aiContext": {
+            "aiGenerated": true,
+            "explanation": "The entry 'Rohan paid Aisha back' for 5000 INR is a direct payment between Rohan and Aisha, indicating a settlement rather than a shared expense for the flat.",
+            "recommendation": "This row should be skipped or excluded from shared expense calculations as it represents a settlement of a previous debt, not a new expense."
+          },
+          "autoFixDetail": null,
+          "autoFixApplied": false,
+          "suggestedAction": "Convert to a Settlement record instead of an Expense. Specify payer and payee.",
+          "requiresUserDecision": true
+        }
+      ],
+      "rowNumber": 14,
+      "originalRow": {
+        "date": "25-02-2026",
+        "notes": "this is a settlement not an expense??",
+        "amount": 5000,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "",
+        "split_with": "Aisha",
+        "description": "Rohan paid Aisha back",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "25-02-2026",
+        "notes": "this is a settlement not an expense??",
+        "amount": 5000,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "",
+        "split_with": "Aisha",
+        "_parsedDate": "2026-02-24T18:30:00.000Z",
+        "description": "Rohan paid Aisha back",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "BLOCKED",
+      "anomalies": [
+        {
+          "id": "A7",
+          "type": "PERCENTAGE_MISMATCH",
+          "message": "Percentages in split_details sum to 110.00%, not 100%. Values: Aisha 30%; Rohan 30%; Priya 30%; Meera 20%. Note: \"percentages might be off\"",
+          "severity": "ERROR",
+          "aiContext": {
+            "aiError": "Unterminated string in JSON at position 145 (line 2 column 144)",
+            "aiGenerated": false,
+            "explanation": "Percentages in split_details sum to 110.00%, not 100%. Values: Aisha 30%; Rohan 30%; Priya 30%; Meera 20%. Note: \"percentages might be off\"",
+            "recommendation": "AI context unavailable. Please review this row manually."
+          },
+          "autoFixDetail": null,
+          "autoFixApplied": false,
+          "suggestedAction": "Correct the percentages so they sum to 100%, or change split_type to equal.",
+          "requiresUserDecision": true
+        }
+      ],
+      "rowNumber": 15,
+      "originalRow": {
+        "date": "28-02-2026",
+        "notes": "percentages might be off",
+        "amount": 1440,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "percentage",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Pizza Friday",
+        "split_details": "Aisha 30%; Rohan 30%; Priya 30%; Meera 20%"
+      },
+      "processedRow": {
+        "date": "28-02-2026",
+        "notes": "percentages might be off",
+        "amount": 1440,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "percentage",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-02-27T18:30:00.000Z",
+        "description": "Pizza Friday",
+        "split_details": "Aisha 30%; Rohan 30%; Priya 30%; Meera 20%"
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 16,
+      "originalRow": {
+        "date": "01-03-2026",
+        "notes": "",
+        "amount": 48000,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "March rent",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "01-03-2026",
+        "notes": "",
+        "amount": 48000,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-02-28T18:30:00.000Z",
+        "description": "March rent",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 17,
+      "originalRow": {
+        "date": "03-03-2026",
+        "notes": "",
+        "amount": 2810,
+        "paid_by": "Meera",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Groceries BigBasket",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "03-03-2026",
+        "notes": "",
+        "amount": 2810,
+        "paid_by": "Meera",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-03-02T18:30:00.000Z",
+        "description": "Groceries BigBasket",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 18,
+      "originalRow": {
+        "date": "05-03-2026",
+        "notes": "",
+        "amount": 1199,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Wifi bill Mar",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "05-03-2026",
+        "notes": "",
+        "amount": 1199,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-03-04T18:30:00.000Z",
+        "description": "Wifi bill Mar",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 19,
+      "originalRow": {
+        "date": "08-03-2026",
+        "notes": "trip starts!",
+        "amount": 32400,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "description": "Goa flights",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "08-03-2026",
+        "notes": "trip starts!",
+        "amount": 32400,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "_parsedDate": "2026-03-07T18:30:00.000Z",
+        "description": "Goa flights",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 20,
+      "originalRow": {
+        "date": "09-03-2026",
+        "notes": "booked on intl site",
+        "amount": 540,
+        "paid_by": "Dev",
+        "currency": "USD",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "description": "Goa villa booking",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "09-03-2026",
+        "notes": "booked on intl site",
+        "amount": 540,
+        "paid_by": "Dev",
+        "currency": "USD",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "_parsedDate": "2026-03-08T18:30:00.000Z",
+        "description": "Goa villa booking",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 21,
+      "originalRow": {
+        "date": "10-03-2026",
+        "notes": "",
+        "amount": 84,
+        "paid_by": "Rohan",
+        "currency": "USD",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "description": "Beach shack lunch",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "10-03-2026",
+        "notes": "",
+        "amount": 84,
+        "paid_by": "Rohan",
+        "currency": "USD",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "_parsedDate": "2026-03-09T18:30:00.000Z",
+        "description": "Beach shack lunch",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 22,
+      "originalRow": {
+        "date": "10-03-2026",
+        "notes": "Rohan and Dev took the bigger ones",
+        "amount": 3600,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "share",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "description": "Scooter rentals",
+        "split_details": "Aisha 1; Rohan 2; Priya 1; Dev 2"
+      },
+      "processedRow": {
+        "date": "10-03-2026",
+        "notes": "Rohan and Dev took the bigger ones",
+        "amount": 3600,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "share",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "_parsedDate": "2026-03-09T18:30:00.000Z",
+        "description": "Scooter rentals",
+        "split_details": "Aisha 1; Rohan 2; Priya 1; Dev 2"
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [
+        {
+          "id": "A8",
+          "type": "NON_MEMBER_IN_SPLIT",
+          "message": "Unknown member(s) in split_with: \"Dev's friend Kabir\". These are not registered users.",
+          "severity": "WARNING",
+          "aiContext": {
+            "aiGenerated": true,
+            "explanation": "The expense for 'Parasailing' includes 'Dev's friend Kabir' in the 'split_with' field, but Kabir is not a registered member of the flat for expense splitting.",
+            "recommendation": "Adjust the 'split_with' field to only include registered members (Aisha, Rohan, Priya, Dev) and update the 'amount' to reflect only their share, or ask Dev to clarify how Kabir's portion should be handled."
+          },
+          "autoFixDetail": "Auto-creating guest account(s) for: Dev's friend Kabir",
+          "autoFixApplied": true,
+          "suggestedAction": "Guest user(s) will be created. Confirm this is correct.",
+          "requiresUserDecision": false
+        }
+      ],
+      "rowNumber": 23,
+      "originalRow": {
+        "date": "11-03-2026",
+        "notes": "Kabir joined for the day",
+        "amount": 150,
+        "paid_by": "Dev",
+        "currency": "USD",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev;Dev's friend Kabir",
+        "description": "Parasailing",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "11-03-2026",
+        "notes": "Kabir joined for the day",
+        "amount": 150,
+        "paid_by": "Dev",
+        "currency": "USD",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev;Dev's friend Kabir",
+        "_parsedDate": "2026-03-10T18:30:00.000Z",
+        "description": "Parasailing",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 24,
+      "originalRow": {
+        "date": "11-03-2026",
+        "notes": "",
+        "amount": 2400,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "description": "Dinner at Thalassa",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "11-03-2026",
+        "notes": "",
+        "amount": 2400,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "_parsedDate": "2026-03-10T18:30:00.000Z",
+        "description": "Dinner at Thalassa",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "BLOCKED",
+      "anomalies": [
+        {
+          "id": "A9",
+          "type": "CONFLICTING_DUPLICATE",
+          "message": "Note suggests this is a duplicate of another entry: \"Aisha also logged this I think hers is wrong\". Two rows describe the same expense with different values.",
+          "severity": "ERROR",
+          "aiContext": {
+            "aiError": "Unterminated string in JSON at position 138 (line 2 column 137)",
+            "aiGenerated": false,
+            "explanation": "Note suggests this is a duplicate of another entry: \"Aisha also logged this I think hers is wrong\". Two rows describe the same expense with different values.",
+            "recommendation": "AI context unavailable. Please review this row manually."
+          },
+          "autoFixDetail": null,
+          "autoFixApplied": false,
+          "suggestedAction": "KEEP Rohan's row (₹2450) as the authoritative record (as confirmed by user). SKIP the other.",
+          "requiresUserDecision": false
+        }
+      ],
+      "rowNumber": 25,
+      "originalRow": {
+        "date": "11-03-2026",
+        "notes": "Aisha also logged this I think hers is wrong",
+        "amount": 2450,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "description": "Thalassa dinner",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "11-03-2026",
+        "notes": "Aisha also logged this I think hers is wrong",
+        "amount": 2450,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "_parsedDate": "2026-03-10T18:30:00.000Z",
+        "description": "Thalassa dinner",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 26,
+      "originalRow": {
+        "date": "12-03-2026",
+        "notes": "one slot got cancelled",
+        "amount": -30,
+        "paid_by": "Dev",
+        "currency": "USD",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "description": "Parasailing refund",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "12-03-2026",
+        "notes": "one slot got cancelled",
+        "amount": -30,
+        "paid_by": "Dev",
+        "currency": "USD",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "_parsedDate": "2026-03-11T18:30:00.000Z",
+        "description": "Parasailing refund",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "NEEDS_REVIEW",
+      "anomalies": [
+        {
+          "id": "A10",
+          "type": "BAD_DATE_FORMAT",
+          "message": "Date \"Mar-14\" has no year — inferred as Sat Mar 14 2026. Please confirm.",
+          "severity": "WARNING",
+          "aiContext": {
+            "aiGenerated": false,
+            "explanation": "Date \"Mar-14\" has no year — inferred as Sat Mar 14 2026. Please confirm.",
+            "recommendation": "This issue was auto-corrected. No manual action required."
+          },
+          "autoFixDetail": "Parsed \"Mar-14\" as 2026-03-13",
+          "autoFixApplied": true,
+          "suggestedAction": "Confirm: was this expense on Sat Mar 14 2026?",
+          "requiresUserDecision": true
+        }
+      ],
+      "rowNumber": 27,
+      "originalRow": {
+        "date": "Mar-14",
+        "notes": "",
+        "amount": 1100,
+        "paid_by": "rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "description": "Airport cab",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "Mar-14",
+        "notes": "",
+        "amount": 1100,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Dev",
+        "_parsedDate": "2026-03-13T18:30:00.000Z",
+        "description": "Airport cab",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [
+        {
+          "id": "A11",
+          "type": "MISSING_CURRENCY",
+          "message": "Currency is missing for \"Groceries DMart\". Defaulting to INR based on surrounding context.",
+          "severity": "WARNING",
+          "aiContext": {
+            "aiGenerated": false,
+            "explanation": "Currency is missing for \"Groceries DMart\". Defaulting to INR based on surrounding context.",
+            "recommendation": "This issue was auto-corrected. No manual action required."
+          },
+          "autoFixDetail": "Currency set to INR",
+          "autoFixApplied": true,
+          "suggestedAction": "Confirm currency is INR, or correct if USD.",
+          "requiresUserDecision": false
+        }
+      ],
+      "rowNumber": 28,
+      "originalRow": {
+        "date": "15-03-2026",
+        "notes": "forgot to set currency",
+        "amount": 2105,
+        "paid_by": "Priya",
+        "currency": "",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Groceries DMart",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "15-03-2026",
+        "notes": "forgot to set currency",
+        "amount": 2105,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-03-14T18:30:00.000Z",
+        "description": "Groceries DMart",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 29,
+      "originalRow": {
+        "date": "18-03-2026",
+        "notes": "",
+        "amount": 1450,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Electricity Mar",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "18-03-2026",
+        "notes": "",
+        "amount": 1450,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-03-17T18:30:00.000Z",
+        "description": "Electricity Mar",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 30,
+      "originalRow": {
+        "date": "20-03-2026",
+        "notes": "",
+        "amount": 3000,
+        "paid_by": "Meera",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Maid salary Mar",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "20-03-2026",
+        "notes": "",
+        "amount": 3000,
+        "paid_by": "Meera",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-03-19T18:30:00.000Z",
+        "description": "Maid salary Mar",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "BLOCKED",
+      "anomalies": [
+        {
+          "id": "A12",
+          "type": "ZERO_AMOUNT",
+          "message": "Amount is 0 for \"Dinner order Swiggy\". The note says: \"counted twice earlier - fixing later\". This may be a void/placeholder.",
+          "severity": "ERROR",
+          "aiContext": {
+            "aiError": "{\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\\nPlease retry in 12.14926833s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash\"},\"quotaValue\":\"5\"}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"12s\"}]}}",
+            "aiGenerated": false,
+            "explanation": "Amount is 0 for \"Dinner order Swiggy\". The note says: \"counted twice earlier - fixing later\". This may be a void/placeholder.",
+            "recommendation": "AI context unavailable. Please review this row manually."
+          },
+          "autoFixDetail": null,
+          "autoFixApplied": false,
+          "suggestedAction": "SKIP this row — a zero-amount expense has no financial effect and the note suggests it is a duplicate marker.",
+          "requiresUserDecision": true
+        }
+      ],
+      "rowNumber": 31,
+      "originalRow": {
+        "date": "22-03-2026",
+        "notes": "counted twice earlier - fixing later",
+        "amount": 0,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Dinner order Swiggy",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "22-03-2026",
+        "notes": "counted twice earlier - fixing later",
+        "amount": 0,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-03-21T18:30:00.000Z",
+        "description": "Dinner order Swiggy",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "BLOCKED",
+      "anomalies": [
+        {
+          "id": "A7",
+          "type": "PERCENTAGE_MISMATCH",
+          "message": "Percentages in split_details sum to 110.00%, not 100%. Values: Aisha 30%; Rohan 30%; Priya 30%; Meera 20%. Note: \"\"",
+          "severity": "ERROR",
+          "aiContext": {
+            "aiError": "{\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\\nPlease retry in 12.140060462s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.5-flash\",\"location\":\"global\"},\"quotaValue\":\"5\"}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"12s\"}]}}",
+            "aiGenerated": false,
+            "explanation": "Percentages in split_details sum to 110.00%, not 100%. Values: Aisha 30%; Rohan 30%; Priya 30%; Meera 20%. Note: \"\"",
+            "recommendation": "AI context unavailable. Please review this row manually."
+          },
+          "autoFixDetail": null,
+          "autoFixApplied": false,
+          "suggestedAction": "Correct the percentages so they sum to 100%, or change split_type to equal.",
+          "requiresUserDecision": true
+        }
+      ],
+      "rowNumber": 32,
+      "originalRow": {
+        "date": "25-03-2026",
+        "notes": "",
+        "amount": 2200,
+        "paid_by": "Meera",
+        "currency": "INR",
+        "split_type": "percentage",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Weekend brunch",
+        "split_details": "Aisha 30%; Rohan 30%; Priya 30%; Meera 20%"
+      },
+      "processedRow": {
+        "date": "25-03-2026",
+        "notes": "",
+        "amount": 2200,
+        "paid_by": "Meera",
+        "currency": "INR",
+        "split_type": "percentage",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-03-24T18:30:00.000Z",
+        "description": "Weekend brunch",
+        "split_details": "Aisha 30%; Rohan 30%; Priya 30%; Meera 20%"
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 33,
+      "originalRow": {
+        "date": "28-03-2026",
+        "notes": "Meera moving out Sunday :(",
+        "amount": 4800,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Meera farewell dinner",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "28-03-2026",
+        "notes": "Meera moving out Sunday :(",
+        "amount": 4800,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "_parsedDate": "2026-03-27T18:30:00.000Z",
+        "description": "Meera farewell dinner",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "NEEDS_REVIEW",
+      "anomalies": [
+        {
+          "id": "A13",
+          "type": "AMBIGUOUS_DATE",
+          "message": "Note says \"is this April 5 or May 4? format is a mess\" — date 04-05-2026 parsed as DD-MM-YYYY = Mon May 04 2026. Note implies ambiguity.",
+          "severity": "WARNING",
+          "aiContext": {
+            "aiError": "{\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\\nPlease retry in 12.143526317s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash\"},\"quotaValue\":\"5\"}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"12s\"}]}}",
+            "aiGenerated": false,
+            "explanation": "Note says \"is this April 5 or May 4? format is a mess\" — date 04-05-2026 parsed as DD-MM-YYYY = Mon May 04 2026. Note implies ambiguity.",
+            "recommendation": "AI context unavailable. Please review this row manually."
+          },
+          "autoFixDetail": "Using DD-MM-YYYY convention: Mon May 04 2026",
+          "autoFixApplied": true,
+          "suggestedAction": "Confirm: is this April 5 (parsed) or May 4?",
+          "requiresUserDecision": true
+        }
+      ],
+      "rowNumber": 34,
+      "originalRow": {
+        "date": "04-05-2026",
+        "notes": "is this April 5 or May 4? format is a mess",
+        "amount": 2500,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya",
+        "description": "Deep cleaning service",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "04-05-2026",
+        "notes": "is this April 5 or May 4? format is a mess",
+        "amount": 2500,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya",
+        "_parsedDate": "2026-05-03T18:30:00.000Z",
+        "description": "Deep cleaning service",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 35,
+      "originalRow": {
+        "date": "01-04-2026",
+        "notes": "Aisha took Meera's room too",
+        "amount": 48000,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "share",
+        "split_with": "Aisha;Rohan;Priya",
+        "description": "April rent",
+        "split_details": "Aisha 2; Rohan 1; Priya 1"
+      },
+      "processedRow": {
+        "date": "01-04-2026",
+        "notes": "Aisha took Meera's room too",
+        "amount": 48000,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "share",
+        "split_with": "Aisha;Rohan;Priya",
+        "_parsedDate": "2026-03-31T18:30:00.000Z",
+        "description": "April rent",
+        "split_details": "Aisha 2; Rohan 1; Priya 1"
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [
+        {
+          "id": "A14",
+          "type": "TIMELINE_VIOLATION",
+          "message": "Timeline violation: Meera left on Tue Mar 31 2026. These members cannot be charged for an expense on 02-04-2026.",
+          "severity": "WARNING",
+          "aiContext": {
+            "aiGenerated": false,
+            "explanation": "Timeline violation: Meera left on Tue Mar 31 2026. These members cannot be charged for an expense on 02-04-2026.",
+            "recommendation": "This issue was auto-corrected. No manual action required."
+          },
+          "autoFixDetail": "Removing Meera from split. Remaining members will absorb the cost equally.",
+          "autoFixApplied": true,
+          "suggestedAction": "Confirm removal of Meera from this expense split.",
+          "requiresUserDecision": false
+        }
+      ],
+      "rowNumber": 36,
+      "originalRow": {
+        "date": "02-04-2026",
+        "notes": "oops Meera still in the group list",
+        "amount": 2640,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Meera",
+        "description": "Groceries BigBasket",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "02-04-2026",
+        "notes": "oops Meera still in the group list",
+        "amount": 2640,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya",
+        "_parsedDate": "2026-04-01T18:30:00.000Z",
+        "description": "Groceries BigBasket",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 37,
+      "originalRow": {
+        "date": "05-04-2026",
+        "notes": "",
+        "amount": 1199,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya",
+        "description": "Wifi bill Apr",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "05-04-2026",
+        "notes": "",
+        "amount": 1199,
+        "paid_by": "Rohan",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya",
+        "_parsedDate": "2026-04-04T18:30:00.000Z",
+        "description": "Wifi bill Apr",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 38,
+      "originalRow": {
+        "date": "08-04-2026",
+        "notes": "Sam moving in! paid Aisha his deposit",
+        "amount": 15000,
+        "paid_by": "Sam",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha",
+        "description": "Sam deposit share",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "08-04-2026",
+        "notes": "Sam moving in! paid Aisha his deposit",
+        "amount": 15000,
+        "paid_by": "Sam",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha",
+        "_parsedDate": "2026-04-07T18:30:00.000Z",
+        "description": "Sam deposit share",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [
+        {
+          "id": "A14",
+          "type": "TIMELINE_VIOLATION",
+          "message": "Timeline violation: Sam joined on Wed Apr 15 2026. These members cannot be charged for an expense on 10-04-2026.",
+          "severity": "WARNING",
+          "aiContext": {
+            "aiGenerated": false,
+            "explanation": "Timeline violation: Sam joined on Wed Apr 15 2026. These members cannot be charged for an expense on 10-04-2026.",
+            "recommendation": "This issue was auto-corrected. No manual action required."
+          },
+          "autoFixDetail": "Removing Sam from split. Remaining members will absorb the cost equally.",
+          "autoFixApplied": true,
+          "suggestedAction": "Confirm removal of Sam from this expense split.",
+          "requiresUserDecision": false
+        }
+      ],
+      "rowNumber": 39,
+      "originalRow": {
+        "date": "10-04-2026",
+        "notes": "",
+        "amount": 3100,
+        "paid_by": "Sam",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Sam",
+        "description": "Housewarming drinks",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "10-04-2026",
+        "notes": "",
+        "amount": 3100,
+        "paid_by": "Sam",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya",
+        "_parsedDate": "2026-04-09T18:30:00.000Z",
+        "description": "Housewarming drinks",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [
+        {
+          "id": "A14",
+          "type": "TIMELINE_VIOLATION",
+          "message": "Timeline violation: Sam joined on Wed Apr 15 2026. These members cannot be charged for an expense on 12-04-2026.",
+          "severity": "WARNING",
+          "aiContext": {
+            "aiGenerated": false,
+            "explanation": "Timeline violation: Sam joined on Wed Apr 15 2026. These members cannot be charged for an expense on 12-04-2026.",
+            "recommendation": "This issue was auto-corrected. No manual action required."
+          },
+          "autoFixDetail": "Removing Sam from split. Remaining members will absorb the cost equally.",
+          "autoFixApplied": true,
+          "suggestedAction": "Confirm removal of Sam from this expense split.",
+          "requiresUserDecision": false
+        }
+      ],
+      "rowNumber": 40,
+      "originalRow": {
+        "date": "12-04-2026",
+        "notes": "",
+        "amount": 1380,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Sam",
+        "description": "Electricity Apr",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "12-04-2026",
+        "notes": "",
+        "amount": 1380,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya",
+        "_parsedDate": "2026-04-11T18:30:00.000Z",
+        "description": "Electricity Apr",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [
+        {
+          "id": "A14",
+          "type": "TIMELINE_VIOLATION",
+          "message": "Timeline violation: Sam joined on Wed Apr 15 2026. These members cannot be charged for an expense on 15-04-2026.",
+          "severity": "WARNING",
+          "aiContext": {
+            "aiGenerated": false,
+            "explanation": "Timeline violation: Sam joined on Wed Apr 15 2026. These members cannot be charged for an expense on 15-04-2026.",
+            "recommendation": "This issue was auto-corrected. No manual action required."
+          },
+          "autoFixDetail": "Removing Sam from split. Remaining members will absorb the cost equally.",
+          "autoFixApplied": true,
+          "suggestedAction": "Confirm removal of Sam from this expense split.",
+          "requiresUserDecision": false
+        }
+      ],
+      "rowNumber": 41,
+      "originalRow": {
+        "date": "15-04-2026",
+        "notes": "",
+        "amount": 1990,
+        "paid_by": "Sam",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Sam",
+        "description": "Groceries DMart",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "15-04-2026",
+        "notes": "",
+        "amount": 1990,
+        "paid_by": "Sam",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya",
+        "_parsedDate": "2026-04-14T18:30:00.000Z",
+        "description": "Groceries DMart",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [
+        {
+          "id": "A16",
+          "type": "SPLIT_TYPE_CONFLICT",
+          "message": "split_type is \"equal\" but split_details \"Aisha 1; Rohan 1; Priya 1; Sam 1\" is also provided. Note: \"split_type says equal but someone added shares anyway\"",
+          "severity": "INFO",
+          "aiContext": {
+            "aiError": "{\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\\nPlease retry in 11.547187134s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash\"},\"quotaValue\":\"5\"}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"11s\"}]}}",
+            "aiGenerated": false,
+            "explanation": "split_type is \"equal\" but split_details \"Aisha 1; Rohan 1; Priya 1; Sam 1\" is also provided. Note: \"split_type says equal but someone added shares anyway\"",
+            "recommendation": "AI context unavailable. Please review this row manually."
+          },
+          "autoFixDetail": "split_details discarded — equal split applied (all shares are identical)",
+          "autoFixApplied": true,
+          "suggestedAction": "No action needed — result is same either way.",
+          "requiresUserDecision": false
+        }
+      ],
+      "rowNumber": 42,
+      "originalRow": {
+        "date": "18-04-2026",
+        "notes": "split_type says equal but someone added shares anyway",
+        "amount": 12000,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Sam",
+        "description": "Furniture for common room",
+        "split_details": "Aisha 1; Rohan 1; Priya 1; Sam 1"
+      },
+      "processedRow": {
+        "date": "18-04-2026",
+        "notes": "split_type says equal but someone added shares anyway",
+        "amount": 12000,
+        "paid_by": "Aisha",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Sam",
+        "_parsedDate": "2026-04-17T18:30:00.000Z",
+        "description": "Furniture for common room",
+        "split_details": ""
+      }
+    },
+    {
+      "status": "READY",
+      "anomalies": [],
+      "rowNumber": 43,
+      "originalRow": {
+        "date": "20-04-2026",
+        "notes": "",
+        "amount": 3000,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Sam",
+        "description": "Maid salary Apr",
+        "split_details": ""
+      },
+      "processedRow": {
+        "date": "20-04-2026",
+        "notes": "",
+        "amount": 3000,
+        "paid_by": "Priya",
+        "currency": "INR",
+        "split_type": "equal",
+        "split_with": "Aisha;Rohan;Priya;Sam",
+        "_parsedDate": "2026-04-19T18:30:00.000Z",
+        "description": "Maid salary Apr",
+        "split_details": ""
+      }
+    }
+  ],
+  "summary": {
+    "ready": 33,
+    "blocked": 6,
+    "skipped": 0,
+    "totalRows": 42,
+    "needsReview": 2,
+    "parseErrors": 0,
+    "totalAnomalies": 18,
+    "convertToSettlement": 1
+  },
+  "generatedAt": "2026-06-15T00:31:48.717Z"
+}

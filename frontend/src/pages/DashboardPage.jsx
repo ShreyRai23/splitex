@@ -7,7 +7,7 @@ import DarkChartCard from '../components/charts/DarkChartCard.jsx';
 import Badge from '../components/ui/Badge.jsx';
 import Avatar from '../components/ui/Avatar.jsx';
 import { Link } from 'react-router-dom';
-import { ArrowRight, TrendingUp } from 'lucide-react';
+import { ArrowRight, TrendingUp, Users } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 
 const fmt = (n) => '₹' + Number(n || 0).toLocaleString('en-IN', { maximumFractionDigits: 0 });
@@ -23,11 +23,13 @@ export default function DashboardPage() {
     queryKey: ['group-balances', selectedGroupId],
     queryFn: () => balancesApi.group(selectedGroupId).then(r => r.data.data),
     refetchInterval: 30000,
+    enabled: !!selectedGroupId,
   });
 
   const { data: expData, isLoading: expLoading } = useQuery({
     queryKey: ['recent-expenses', selectedGroupId],
     queryFn: () => expensesApi.list({ groupId: selectedGroupId, limit: 6 }).then(r => r.data.data),
+    enabled: !!selectedGroupId,
   });
 
   const summary = balData?.summary || [];
@@ -43,6 +45,23 @@ export default function DashboardPage() {
   // Total paid, owed, net
   const totalPaid = summary.reduce((s, u) => s + (u.balance > 0 ? u.balance : 0), 0);
   const totalOwed = summary.reduce((s, u) => s + (u.balance < 0 ? Math.abs(u.balance) : 0), 0);
+
+  if (!selectedGroupId) {
+    return (
+      <div className="page animate-fade-in" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh', textAlign: 'center' }}>
+        <div style={{ background: 'var(--card-bg)', padding: '40px', borderRadius: 'var(--r-card)', border: '1px solid var(--border)' }}>
+          <Users size={48} color="var(--purple)" style={{ marginBottom: 16 }} />
+          <h2 className="text-h2">Welcome to SpilTeX!</h2>
+          <p style={{ color: 'var(--text-muted)', marginTop: 8, marginBottom: 24, maxWidth: 400 }}>
+            You don't belong to any groups yet. To start tracking expenses, you need to create a new group or join an existing one.
+          </p>
+          <Link to="/groups" className="btn btn-purple btn-lg">
+            Manage Groups →
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page animate-fade-in">

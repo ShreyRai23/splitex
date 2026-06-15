@@ -9,11 +9,13 @@ const { createError } = require('../middleware/error.middleware');
 async function createGroup(req, res) {
   const data = CreateGroupSchema.parse(req.body);
 
+  const memberIds = Array.from(new Set([...data.members, req.user.id]));
+
   const group = await prisma.group.create({
     data: { 
       name: data.name,
       memberships: {
-        create: data.members.map(userId => ({ userId, joinedAt: new Date() }))
+        create: memberIds.map(userId => ({ userId, joinedAt: new Date() }))
       }
     },
     include: { memberships: true }
