@@ -6,7 +6,7 @@ import useAppStore from '../store/app.store.js';
 import Modal from '../components/ui/Modal.jsx';
 import Avatar from '../components/ui/Avatar.jsx';
 import { Link, useNavigate } from 'react-router-dom';
-import { Plus, Users, ArrowRight } from 'lucide-react';
+import { Plus, Users, ArrowRight, AlertCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function GroupsPage() {
@@ -17,6 +17,7 @@ export default function GroupsPage() {
   const [name, setName] = useState('');
   const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [formErrs, setFormErrs] = useState({});
 
   const { data: groups = [], isLoading } = useQuery({
     queryKey: ['groups'],
@@ -30,15 +31,22 @@ export default function GroupsPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (members.length === 0) return toast.error('Select at least one member');
+    // Client-side validation
+    const errs = {};
+    if (!name.trim())            errs.name    = 'Group name is required.';
+    else if (name.trim().length < 2) errs.name = 'Name must be at least 2 characters.';
+    if (members.length === 0)    errs.members = 'Select at least one member.';
+    if (Object.keys(errs).length) { setFormErrs(errs); return; }
+
     setLoading(true);
     try {
-      const { data } = await groupsApi.create({ name, members });
+      const { data } = await groupsApi.create({ name: name.trim(), members });
       qc.invalidateQueries(['groups']);
       toast.success('Group created');
       setShowModal(false);
       setName('');
       setMembers([]);
+      setFormErrs({});
       // Auto switch to new group
       setSelectedGroupId(data.data.id);
       navigate(`/groups/${data.data.id}`);
@@ -76,7 +84,12 @@ export default function GroupsPage() {
             const colors = ['purple', 'lime', 'amber', 'peach', 'sky'];
             const color = colors[i % colors.length];
             return (
-              <div key={g.id} className={`stat-card ${color}`} style={{ padding: 24, display: 'flex', flexDirection: 'column' }}>
+              <div
+                key={g.id}
+                className={`stat-card ${color}`}
+                style={{ padding: 24, display: 'flex', flexDirection: 'column', cursor: 'pointer' }}
+                onClick={() => { setSelectedGroupId(g.id); navigate(`/groups/${g.id}`); }}
+              >
                 <div style={{ flex: 1 }}>
                   <div className="flex items-center justify-between" style={{ marginBottom: 16 }}>
                     <div className="badge badge-black">Group #{g.id}</div>
@@ -117,17 +130,22 @@ export default function GroupsPage() {
         )}
       </div>
 
-      <Modal open={showModal} onClose={() => setShowModal(false)} title="Create New Group">
-        <form onSubmit={handleSubmit}>
+      <Modal open={showModal} onClose={() => { setShowModal(false); setFormErrs({}); }} title="Create New Group">
+        <form onSubmit={handleSubmit} noValidate>
           <div className="form-group">
             <label className="form-label">Group Name</label>
             <input
               className="form-input"
               placeholder="e.g. Flat 4B, Goa Trip..."
               value={name}
-              onChange={e => setName(e.target.value)}
-              required
+              onChange={e => { setName(e.target.value); setFormErrs(p => ({...p, name: ''})); }}
+              style={{ borderColor: formErrs.name ? '#ef4444' : undefined }}
             />
+            {formErrs.name && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 4, color: '#b91c1c', fontSize: '0.78rem' }}>
+                <AlertCircle size={12} /><span>{formErrs.name}</span>
+              </div>
+            )}
           </div>
           <div className="form-group" style={{ marginTop: 16 }}>
             <label className="form-label">Initial Members</label>
@@ -137,13 +155,17 @@ export default function GroupsPage() {
                   key={u.id}
                   type="button"
                   className={`btn btn-sm ${members.includes(u.id) ? 'btn-black' : 'btn-outline'}`}
-                  onClick={() => setMembers(prev => prev.includes(u.id) ? prev.filter(id => id !== u.id) : [...prev, u.id])}
+                  onClick={() => { setMembers(prev => prev.includes(u.id) ? prev.filter(id => id !== u.id) : [...prev, u.id]); setFormErrs(p => ({...p, members: ''})); }}
                 >
                   {u.name}
                 </button>
               ))}
             </div>
-            {members.length === 0 && <div className="text-xs" style={{ color: 'var(--coral)', marginTop: 4 }}>Select at least 1 member</div>}
+            {formErrs.members && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 6, color: '#b91c1c', fontSize: '0.78rem' }}>
+                <AlertCircle size={12} /><span>{formErrs.members}</span>
+              </div>
+            )}
           </div>
           <div style={{ display: 'flex', gap: 12, marginTop: 24 }}>
             <button type="submit" className="btn btn-black" style={{ flex: 1, justifyContent: 'center' }} disabled={loading}>

@@ -7,10 +7,19 @@ import Modal from '../components/ui/Modal.jsx';
 import Badge from '../components/ui/Badge.jsx';
 import Avatar from '../components/ui/Avatar.jsx';
 import { Link } from 'react-router-dom';
-import { Plus, Trash2, Pencil, Search } from 'lucide-react';
+import { Plus, Trash2, Pencil, Search, AlertCircle } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
+
+function FieldErr({ msg }) {
+  if (!msg) return null;
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 4, color: '#b91c1c', fontSize: '0.78rem' }}>
+      <AlertCircle size={12} /><span>{msg}</span>
+    </div>
+  );
+}
 
 const fmt = (n) => '₹' + Number(n || 0).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
@@ -23,19 +32,30 @@ function ExpenseForm({ onClose, groupId, users }) {
     date: new Date().toISOString().slice(0, 10), splitType: 'equal',
     splitWith: [], splitDetails: null, notes: '',
   });
+  const [errs, setErrs] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const set = (key, val) => setForm(p => ({ ...p, [key]: val }));
+  const set = (key, val) => {
+    setForm(p => ({ ...p, [key]: val }));
+    setErrs(p => ({ ...p, [key]: '' }));
+  };
   const toggleMember = (id) => {
     set('splitWith', form.splitWith.includes(id)
       ? form.splitWith.filter(x => x !== id)
       : [...form.splitWith, id]);
+    setErrs(p => ({ ...p, splitWith: '' }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.paidById) return toast.error('Select who paid');
-    if (!form.splitWith.length) return toast.error('Select at least one person to split with');
+    // client-side validation
+    const newErrs = {};
+    if (!form.description.trim())       newErrs.description = 'Description is required.';
+    if (!form.amount || Number(form.amount) <= 0) newErrs.amount = 'Enter a positive amount.';
+    if (!form.paidById)                 newErrs.paidById = 'Select who paid.';
+    if (!form.splitWith.length)         newErrs.splitWith = 'Select at least one person.';
+    if (Object.keys(newErrs).length) { setErrs(newErrs); return; }
+
     setLoading(true);
     try {
       const idKey = uuidv4();
@@ -50,24 +70,35 @@ function ExpenseForm({ onClose, groupId, users }) {
       toast.success('Expense added!');
       onClose();
     } catch (err) {
-      toast.error(err.response?.data?.message || err.response?.data?.errors?.[0]?.message || 'Error creating expense');
+      const msg = err.response?.data?.message || err.response?.data?.errors?.[0]?.message || 'Error creating expense';
+      toast.error(msg);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} noValidate>
       <div className="form-group">
         <label className="form-label">Description</label>
-        <input className="form-input" placeholder="Rent, groceries..." value={form.description}
-          onChange={e => set('description', e.target.value)} required />
+        <input
+          className="form-input"
+          placeholder="Rent, groceries..."
+          value={form.description}
+          onChange={e => set('description', e.target.value)}
+          style={{ borderColor: errs.description ? '#ef4444' : undefined }}
+        />
+        <FieldErr msg={errs.description} />
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
         <div className="form-group">
           <label className="form-label">Amount</label>
-          <input className="form-input" type="number" step="0.01" placeholder="0.00" value={form.amount}
-            onChange={e => set('amount', e.target.value)} required />
+          <input
+            className="form-input" type="number" step="0.01" placeholder="0.00" value={form.amount}
+            onChange={e => set('amount', e.target.value)} min="0.01"
+            style={{ borderColor: errs.amount ? '#ef4444' : undefined }}
+          />
+          <FieldErr msg={errs.amount} />
         </div>
         <div className="form-group">
           <label className="form-label">Currency</label>
@@ -91,10 +122,15 @@ function ExpenseForm({ onClose, groupId, users }) {
       </div>
       <div className="form-group">
         <label className="form-label">Paid By</label>
-        <select className="pill-select form-input" value={form.paidById} onChange={e => set('paidById', e.target.value)} required>
+        <select
+          className="pill-select form-input" value={form.paidById}
+          onChange={e => set('paidById', e.target.value)}
+          style={{ borderColor: errs.paidById ? '#ef4444' : undefined }}
+        >
           <option value="">Select person...</option>
           {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
         </select>
+        <FieldErr msg={errs.paidById} />
       </div>
       <div className="form-group">
         <label className="form-label">Split Among</label>
@@ -106,6 +142,7 @@ function ExpenseForm({ onClose, groupId, users }) {
             >{u.name}</button>
           ))}
         </div>
+        <FieldErr msg={errs.splitWith} />
       </div>
       <div className="form-group">
         <label className="form-label">Notes (optional)</label>
@@ -147,8 +184,20 @@ export default function ExpensesPage() {
   });
 
   const handleDelete = (id, desc) => {
-    if (!confirm(`Delete "${desc}"?`)) return;
-    deleteMutation.mutate(id);
+    toast((t) => (
+      <span style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <strong>Delete "{desc}"?</strong>
+        <span style={{ fontSize: '0.8125rem', color: '#555' }}>This action cannot be undone.</span>
+        <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
+          <button
+            className="btn btn-sm"
+            style={{ background: '#ef4444', color: '#fff', border: 'none' }}
+            onClick={() => { toast.dismiss(t.id); deleteMutation.mutate(id); }}
+          >Delete</button>
+          <button className="btn btn-sm btn-outline" onClick={() => toast.dismiss(t.id)}>Cancel</button>
+        </div>
+      </span>
+    ), { duration: 8000 });
   };
 
   const filtered = (expenses || []).filter(e => {

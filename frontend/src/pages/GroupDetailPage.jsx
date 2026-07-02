@@ -6,7 +6,7 @@ import { groupsApi, usersApi } from '../api/index.js';
 import useAuthStore from '../store/auth.store.js';
 import Modal from '../components/ui/Modal.jsx';
 import Avatar from '../components/ui/Avatar.jsx';
-import { ArrowLeft, UserPlus, LogOut } from 'lucide-react';
+import { ArrowLeft, UserPlus, LogOut, AlertCircle } from 'lucide-react';
 import { format, parseISO, differenceInDays } from 'date-fns';
 import toast from 'react-hot-toast';
 
@@ -16,6 +16,9 @@ export default function GroupDetailPage() {
   const { user: currentUser } = useAuthStore();
   const [showAdd, setShowAdd] = useState(false);
   const [addForm, setAddForm] = useState({ userId: '', joinedAt: new Date().toISOString().slice(0,10) });
+  const [addErr, setAddErr] = useState('');
+  const [leaveModal, setLeaveModal] = useState({ open: false, uid: null, name: '', date: new Date().toISOString().slice(0,10) });
+  const [leaveErr, setLeaveErr] = useState('');
 
   const { data: group, isLoading } = useQuery({
     queryKey: ['group', id],
@@ -41,14 +44,20 @@ export default function GroupDetailPage() {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    if (!addForm.userId) return;
+    if (!addForm.userId) { setAddErr('Please select a user.'); return; }
+    setAddErr('');
     addMutation.mutate({ userId: parseInt(addForm.userId), joinedAt: addForm.joinedAt });
   };
 
   const handleLeave = (uid, name) => {
-    const d = prompt(`When are you leaving? (YYYY-MM-DD)`, new Date().toISOString().slice(0,10));
-    if (!d) return;
-    leaveMutation.mutate({ uid, leftAt: new Date(d).toISOString() });
+    setLeaveModal({ open: true, uid, name, date: new Date().toISOString().slice(0,10) });
+    setLeaveErr('');
+  };
+
+  const confirmLeave = () => {
+    if (!leaveModal.date) { setLeaveErr('Please select a leave date.'); return; }
+    leaveMutation.mutate({ uid: leaveModal.uid, leftAt: new Date(leaveModal.date).toISOString() });
+    setLeaveModal(p => ({ ...p, open: false }));
   };
 
   if (isLoading || !group) return <div className="page"><div className="skeleton" style={{ height: 200 }} /></div>;
@@ -79,7 +88,11 @@ export default function GroupDetailPage() {
         </div>
         <div className="flex gap-md">
           {isActiveMember && (
-            <button className="btn btn-outline" style={{ borderColor: 'var(--coral)', color: 'var(--coral)' }} onClick={() => handleLeave(currentUser.id, currentUser.name)}>
+            <button
+              className="btn btn-outline"
+              style={{ borderColor: 'var(--coral)', color: 'var(--coral)' }}
+              onClick={() => handleLeave(currentUser.id, currentUser.name)}
+            >
               <LogOut size={16} /> Leave Group
             </button>
           )}
@@ -152,16 +165,26 @@ export default function GroupDetailPage() {
         </div>
       </div>
 
-      <Modal open={showAdd} onClose={() => setShowAdd(false)} title="Add Member">
-        <form onSubmit={handleAdd}>
+      <Modal open={showAdd} onClose={() => { setShowAdd(false); setAddErr(''); }} title="Add Member">
+        <form onSubmit={handleAdd} noValidate>
           <div className="form-group">
             <label className="form-label">Select User</label>
-            <select className="pill-select form-input" value={addForm.userId} onChange={e => setAddForm(p => ({...p, userId: e.target.value}))} required>
+            <select
+              className="pill-select form-input"
+              value={addForm.userId}
+              onChange={e => { setAddForm(p => ({...p, userId: e.target.value})); setAddErr(''); }}
+              style={{ borderColor: addErr ? '#ef4444' : undefined }}
+            >
               <option value="">Select...</option>
               {(usersData || []).filter(u => !group.members?.find(m => m.userId === u.id)).map(u => (
                 <option key={u.id} value={u.id}>{u.name} ({u.email})</option>
               ))}
             </select>
+            {addErr && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 4, color: '#b91c1c', fontSize: '0.78rem' }}>
+                <AlertCircle size={12} /><span>{addErr}</span>
+              </div>
+            )}
           </div>
           <div className="form-group">
             <label className="form-label">Joined Date</label>
@@ -171,6 +194,39 @@ export default function GroupDetailPage() {
             {addMutation.isPending ? 'Adding...' : 'Add Member'}
           </button>
         </form>
+      </Modal>
+
+      {/* Leave Group Modal */}
+      <Modal open={leaveModal.open} onClose={() => setLeaveModal(p => ({...p, open: false}))} title="Leave Group">
+        <p style={{ marginBottom: 20, color: 'var(--text-secondary)' }}>
+          When is <strong>{leaveModal.name}</strong> leaving the group? Members won't be charged expenses after this date.
+        </p>
+        <div className="form-group">
+          <label className="form-label">Leave Date</label>
+          <input
+            className="form-input"
+            type="date"
+            value={leaveModal.date}
+            onChange={e => { setLeaveModal(p => ({...p, date: e.target.value})); setLeaveErr(''); }}
+            style={{ borderColor: leaveErr ? '#ef4444' : undefined }}
+          />
+          {leaveErr && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 4, color: '#b91c1c', fontSize: '0.78rem' }}>
+              <AlertCircle size={12} /><span>{leaveErr}</span>
+            </div>
+          )}
+        </div>
+        <div style={{ display: 'flex', gap: 12, marginTop: 20 }}>
+          <button
+            className="btn btn-outline"
+            style={{ flex: 1, justifyContent: 'center', borderColor: 'var(--coral)', color: 'var(--coral)' }}
+            onClick={confirmLeave}
+            disabled={leaveMutation.isPending}
+          >
+            {leaveMutation.isPending ? 'Saving...' : 'Confirm Leave'}
+          </button>
+          <button className="btn btn-outline" onClick={() => setLeaveModal(p => ({...p, open: false}))}>Cancel</button>
+        </div>
       </Modal>
     </div>
   );

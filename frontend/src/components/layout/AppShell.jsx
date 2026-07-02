@@ -95,16 +95,18 @@ export default function AppShell() {
 
       {/* Tab Navigation */}
       <div className="tabnav">
-        {NAV_ITEMS.map(({ to, label, icon: Icon }) => (
-          <NavLink
-            key={to}
-            to={to}
-            className={({ isActive }) => `tabnav-item flex items-center gap-sm ${isActive ? 'active' : ''}`}
-          >
-            <Icon size={15} />
-            {label}
-          </NavLink>
-        ))}
+        <div className="tabnav-inner">
+          {NAV_ITEMS.map(({ to, label, icon: Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) => `tabnav-item flex items-center gap-sm ${isActive ? 'active' : ''}`}
+            >
+              <Icon size={15} />
+              {label}
+            </NavLink>
+          ))}
+        </div>
       </div>
 
       {/* Page Content */}

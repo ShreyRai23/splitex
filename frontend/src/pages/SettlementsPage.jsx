@@ -6,11 +6,20 @@ import useAppStore from '../store/app.store.js';
 import Modal from '../components/ui/Modal.jsx';
 import Avatar from '../components/ui/Avatar.jsx';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import toast from 'react-hot-toast';
 
 const fmt = (n) => '₹' + Number(n || 0).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+
+function FieldErr({ msg }) {
+  if (!msg) return null;
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 4, color: '#b91c1c', fontSize: '0.78rem' }}>
+      <AlertCircle size={12} /><span>{msg}</span>
+    </div>
+  );
+}
 
 function SettlementForm({ onClose, groupId, users }) {
   const qc = useQueryClient();
@@ -18,13 +27,24 @@ function SettlementForm({ onClose, groupId, users }) {
     groupId, payerId: '', payeeId: '', amount: '',
     date: new Date().toISOString().slice(0, 10), method: 'UPI', notes: ''
   });
+  const [errs, setErrs] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
+  const set = (k, v) => {
+    setForm(p => ({ ...p, [k]: v }));
+    setErrs(p => ({ ...p, [k]: '' }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.payerId === form.payeeId) return toast.error('Payer and Payee cannot be the same person');
+    const newErrs = {};
+    if (!form.payerId)                          newErrs.payerId  = 'Select who paid.';
+    if (!form.payeeId)                          newErrs.payeeId  = 'Select who received.';
+    if (form.payerId && form.payeeId && form.payerId === form.payeeId)
+                                                newErrs.payeeId  = 'Payer and payee cannot be the same person.';
+    if (!form.amount || Number(form.amount) <= 0) newErrs.amount = 'Enter a positive amount.';
+    if (Object.keys(newErrs).length) { setErrs(newErrs); return; }
+
     setLoading(true);
     try {
       await settlementsApi.create({
@@ -45,30 +65,44 @@ function SettlementForm({ onClose, groupId, users }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 16, alignItems: 'center', marginBottom: 20 }}>
+    <form onSubmit={handleSubmit} noValidate>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 16, alignItems: 'flex-start', marginBottom: 20 }}>
         <div className="form-group" style={{ marginBottom: 0 }}>
           <label className="form-label">Who paid (Payer)</label>
-          <select className="pill-select form-input" value={form.payerId} onChange={e => set('payerId', e.target.value)} required>
+          <select
+            className="pill-select form-input" value={form.payerId}
+            onChange={e => set('payerId', e.target.value)}
+            style={{ borderColor: errs.payerId ? '#ef4444' : undefined }}
+          >
             <option value="">Select...</option>
             {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
           </select>
+          <FieldErr msg={errs.payerId} />
         </div>
-        <ArrowRight size={20} color="var(--text-muted)" style={{ marginTop: 24 }} />
+        <ArrowRight size={20} color="var(--text-muted)" style={{ marginTop: 32 }} />
         <div className="form-group" style={{ marginBottom: 0 }}>
           <label className="form-label">Who received (Payee)</label>
-          <select className="pill-select form-input" value={form.payeeId} onChange={e => set('payeeId', e.target.value)} required>
+          <select
+            className="pill-select form-input" value={form.payeeId}
+            onChange={e => set('payeeId', e.target.value)}
+            style={{ borderColor: errs.payeeId ? '#ef4444' : undefined }}
+          >
             <option value="">Select...</option>
             {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
           </select>
+          <FieldErr msg={errs.payeeId} />
         </div>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
         <div className="form-group">
           <label className="form-label">Amount (₹)</label>
-          <input className="form-input" type="number" step="0.01" placeholder="0.00" value={form.amount}
-            onChange={e => set('amount', e.target.value)} required />
+          <input
+            className="form-input" type="number" step="0.01" placeholder="0.00" value={form.amount}
+            onChange={e => set('amount', e.target.value)} min="0.01"
+            style={{ borderColor: errs.amount ? '#ef4444' : undefined }}
+          />
+          <FieldErr msg={errs.amount} />
         </div>
         <div className="form-group">
           <label className="form-label">Date</label>

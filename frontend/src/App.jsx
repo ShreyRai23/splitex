@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AppShell from './components/layout/AppShell.jsx';
 import ProtectedRoute from './components/layout/ProtectedRoute.jsx';
+import useAuthStore from './store/auth.store.js';
 
 import LandingPage from './pages/LandingPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
@@ -17,14 +18,21 @@ import GroupDetailPage from './pages/GroupDetailPage.jsx';
 import ImportPage from './pages/ImportPage.jsx';
 import AuditPage from './pages/AuditPage.jsx';
 
+/** Redirects already-logged-in users away from public-only pages (login/register) */
+function PublicRoute({ children }) {
+  const { token } = useAuthStore();
+  if (token) return <Navigate to="/dashboard" replace />;
+  return children;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
 
         {/* Protected Dashboard Routes */}
         <Route

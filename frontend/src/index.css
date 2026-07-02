@@ -9,7 +9,7 @@
    - High contrast type on each card color
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 /* ── Design Tokens ─────────────────────────────────────────── */
 :root {
@@ -250,8 +250,11 @@ ul, ol { list-style: none; }
 /* ── Nav ───────────────────────────────────────────────────── */
 .topnav {
   height: var(--nav-h);
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
+  /* Apple-style glassmorphic */
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
   padding: 0 var(--sp-xl);
@@ -273,13 +276,24 @@ ul, ol { list-style: none; }
   display: flex;
   justify-content: center;
   border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  overflow-x: auto;
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 90;
+}
+/* inner row — aligns tabs to the same width as .page content */
+.tabnav-inner {
+  display: flex;
+  width: 100%;
+  max-width: 1280px;
   padding: 0 var(--sp-xl);
   gap: 0;
-  background: var(--bg);
-  overflow-x: auto;
 }
 .tabnav-item {
-  padding: 14px 20px;
+  padding: 14px 24px;
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--text-muted);
@@ -482,7 +496,7 @@ ul, ol { list-style: none; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .page { padding: var(--sp-md); }
   .topnav { padding: 0 var(--sp-md); }
-  .tabnav { padding: 0 var(--sp-md); }
+  .tabnav-inner { padding: 0 var(--sp-md); }
   .hide-mobile { display: none !important; }
 }
 @media (max-width: 1024px) {
