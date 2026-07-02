@@ -61,7 +61,7 @@ export default function BalancesPage() {
       </div>
 
       {/* Top row: KPIs + chart */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1.5fr', gap: 20, marginBottom: 24 }}>
+      <div className="grid-3" style={{ gap: 20, marginBottom: 24 }}>
         <div className="stat-card lime" style={{ padding: 24 }}>
           <div className="stat-card-label">Total Owed to Group</div>
           <div className="stat-card-value">{fmt(totalOwed)}</div>

@@ -119,7 +119,7 @@ export default function LandingPage() {
 
         {/* ── Hero ──────────────────────────────────────────── */}
         <section style={{ padding: '80px 48px 64px', maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
+          <div className="responsive-grid-2" style={{ gap: 48, alignItems: 'center' }}>
             {/* Left: text */}
             <div className="animate-fade-in">
               <div className="badge badge-lime" style={{ marginBottom: 20, fontSize: '0.75rem' }}>
@@ -217,7 +217,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          <div className="grid-3" style={{ gap: 20 }}>
             {FEATURES.map(({ icon: Icon, color, title, desc }, i) => (
               <div
                 key={title}
@@ -243,7 +243,7 @@ export default function LandingPage() {
         <section style={{ padding: '64px 48px', background: 'var(--bg-alt)' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <h2 className="text-h1 reveal" style={{ marginBottom: 48, textAlign: 'center' }}>Three steps to clarity.</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
+            <div className="grid-3" style={{ gap: 32 }}>
               {[
                 { step: '01', color: 'lime',   title: 'Upload your CSV', desc: 'Drag & drop your exported expense sheet. Our 2-phase engine catches every anomaly before importing.' },
                 { step: '02', color: 'purple', title: 'Review & Approve', desc: 'See every detected issue, AI explanations for each, and decide: import, skip, or convert to settlement.' },
@@ -282,7 +282,7 @@ export default function LandingPage() {
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
             {/* Top row: brand + tagline + links */}
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, marginBottom: 56 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 48, marginBottom: 56, justifyContent: 'space-between' }}>
 
               {/* Brand column */}
               <div>

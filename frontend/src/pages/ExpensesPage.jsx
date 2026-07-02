@@ -90,7 +90,7 @@ function ExpenseForm({ onClose, groupId, users }) {
         />
         <FieldErr msg={errs.description} />
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      <div className="responsive-grid-2" style={{ marginBottom: 24 }}>
         <div className="form-group">
           <label className="form-label">Amount</label>
           <input
@@ -266,7 +266,7 @@ export default function ExpensesPage() {
         <div className="table-header" style={{ gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 80px' }}>
           <span>Description</span><span>Paid By</span><span>Date</span><span>Split</span><span>Amount</span><span></span>
         </div>
-        <div className="table-section">
+        <div className="table-section min-w-800">
           {isLoading
             ? [1,2,3,4,5].map(i => <div key={i} className="skeleton" style={{ height: 60, borderRadius: 12, marginBottom: 4 }} />)
             : filtered.length === 0

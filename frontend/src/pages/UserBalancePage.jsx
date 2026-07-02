@@ -96,7 +96,7 @@ export default function UserBalancePage() {
         Every expense that contributes to the {fmt(balance)} net balance.
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+      <div className="responsive-grid-2" style={{ marginBottom: 24 }}>
         {/* Left: What they paid */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16, color: 'var(--lime-dark)' }}>

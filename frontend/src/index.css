@@ -130,6 +130,10 @@ ul, ol { list-style: none; }
 .grid-3  { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-lg); }
 .grid-4  { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-lg); }
 
+/* Responsive Proportional Grids */
+.responsive-grid-1-5 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
+.responsive-grid-1-2 { display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; }
+
 /* ── Pill Buttons ──────────────────────────────────────────── */
 .btn {
   display: inline-flex; align-items: center; gap: var(--sp-sm);
@@ -198,7 +202,7 @@ ul, ol { list-style: none; }
 .table-card {
   background: var(--bg-alt);
   border-radius: var(--r-card);
-  overflow: hidden;
+  overflow-x: auto;
   box-shadow: var(--shadow-card);
 }
 .table-header {
@@ -228,6 +232,7 @@ ul, ol { list-style: none; }
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 .table-section { padding: var(--sp-sm); }
+.min-w-800 { min-width: 800px; }
 
 /* ── Badges ────────────────────────────────────────────────── */
 .badge {
@@ -494,6 +499,7 @@ ul, ol { list-style: none; }
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .responsive-grid-1-5, .responsive-grid-1-2 { grid-template-columns: 1fr; }
   .page { padding: var(--sp-md); }
   .topnav { padding: 0 var(--sp-md); }
   .tabnav-inner { padding: 0 var(--sp-md); }
@@ -502,6 +508,7 @@ ul, ol { list-style: none; }
 @media (max-width: 1024px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .responsive-grid-1-5, .responsive-grid-1-2 { grid-template-columns: 1fr; }
 }
 
 /* ── Scrollbar ──────────────────────────────────────────────── */

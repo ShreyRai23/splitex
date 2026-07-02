@@ -28,7 +28,7 @@ export default function AuditPage() {
         <div className="table-header" style={{ gridTemplateColumns: '1.5fr 1fr 1fr 2fr 1.5fr' }}>
           <span>Timestamp</span><span>User</span><span>Action</span><span>Entity</span><span>Details</span>
         </div>
-        <div className="table-section">
+        <div className="table-section min-w-800">
           {isLoading
             ? [1,2,3,4,5].map(i => <div key={i} className="skeleton" style={{ height: 60, borderRadius: 12, marginBottom: 4 }} />)
             : filtered.length === 0

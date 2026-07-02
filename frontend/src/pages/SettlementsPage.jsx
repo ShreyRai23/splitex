@@ -66,7 +66,7 @@ function SettlementForm({ onClose, groupId, users }) {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 16, alignItems: 'flex-start', marginBottom: 20 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'flex-start', marginBottom: 20 }}>
         <div className="form-group" style={{ marginBottom: 0 }}>
           <label className="form-label">Who paid (Payer)</label>
           <select
@@ -94,7 +94,7 @@ function SettlementForm({ onClose, groupId, users }) {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      <div className="responsive-grid-2" style={{ marginBottom: 12 }}>
         <div className="form-group">
           <label className="form-label">Amount (₹)</label>
           <input
@@ -183,7 +183,7 @@ export default function SettlementsPage() {
         <div className="table-header" style={{ gridTemplateColumns: '2fr 1fr 1fr 1fr' }}>
           <span>Transaction</span><span>Date</span><span>Method</span><span>Amount</span>
         </div>
-        <div className="table-section">
+        <div className="table-section min-w-800">
           {isLoading
             ? [1,2,3].map(i => <div key={i} className="skeleton" style={{ height: 60, borderRadius: 12, marginBottom: 4 }} />)
             : settlements.length === 0

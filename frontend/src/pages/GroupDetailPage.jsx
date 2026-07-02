@@ -121,8 +121,8 @@ export default function GroupDetailPage() {
             const isActive = !m.leftAt;
 
             return (
-              <div key={m.id} style={{ display: 'grid', gridTemplateColumns: '200px 1fr 100px', alignItems: 'center', gap: 24, marginBottom: 16 }}>
-                <div className="flex items-center gap-md">
+              <div key={m.id} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 24, marginBottom: 16 }}>
+                <div className="flex items-center gap-md" style={{ flex: '1 1 180px' }}>
                   <Avatar name={m.user?.name} size="sm" />
                   <div>
                     <div style={{ fontWeight: 600 }}>{m.user?.name}</div>
@@ -133,7 +133,7 @@ export default function GroupDetailPage() {
                 </div>
 
                 {/* Timeline Bar */}
-                <div style={{ position: 'relative', height: 12, background: 'var(--bg)', borderRadius: 6, overflow: 'hidden' }}>
+                <div style={{ position: 'relative', height: 12, background: 'var(--bg)', borderRadius: 6, overflow: 'hidden', flex: '2 1 200px' }}>
                   <div style={{
                     position: 'absolute',
                     left: `${leftPct}%`,

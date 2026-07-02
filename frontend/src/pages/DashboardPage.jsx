@@ -90,7 +90,7 @@ export default function DashboardPage() {
       </div>
 
       {/* ── Main Grid: Chart + Simplified Debts ─────────── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 20, marginBottom: 24 }}>
+      <div className="responsive-grid-1-5" style={{ marginBottom: 24 }}>
         {/* Chart card */}
         <DarkChartCard
           data={chartData}
@@ -136,7 +136,7 @@ export default function DashboardPage() {
       </div>
 
       {/* ── Member Balances + Recent Expenses ───────────── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 20 }}>
+      <div className="responsive-grid-1-2">
         {/* Member summary */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
