@@ -119,7 +119,7 @@ export default function LandingPage() {
 
         {/* ── Hero ──────────────────────────────────────────── */}
         <section style={{ padding: '80px 48px 64px', maxWidth: 1200, margin: '0 auto' }}>
-          <div className="responsive-grid-2" style={{ gap: 48, alignItems: 'center' }}>
+          <div className="grid-2" style={{ gap: 48, alignItems: 'center' }}>
             {/* Left: text */}
             <div className="animate-fade-in">
               <div className="badge badge-lime" style={{ marginBottom: 20, fontSize: '0.75rem' }}>
